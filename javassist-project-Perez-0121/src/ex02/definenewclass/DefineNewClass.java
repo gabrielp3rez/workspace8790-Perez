@@ -38,21 +38,25 @@ public class DefineNewClass {
 			}
 		} while (!valid);
 		
+		// Grab classes that start with "Common"
 		List<String> common = new ArrayList<String>();
-
 		for (int i = 0; i <= 2; i++)
 		{
 			if(inputs[i].startsWith("Common"))
 			common.add(inputs[i]);
 		}
 		
+		// Get super class name and child classes
 		String superClassName = getSuperClassName(common, inputs);
 		List<String> childClasses = getChildClasses(superClassName, inputs);
+		
 		try
 		{
+			// Insert class path
 			ClassPool pool = ClassPool.getDefault();
 			insertClassPath(pool);
 			
+			// Make the classes
 			CtClass superClass = makeClass(pool, superClassName);
 			superClass.writeFile(outputDir);
 			
@@ -62,9 +66,11 @@ public class DefineNewClass {
 			CtClass childClass2 = makeClass(pool, childClasses.get(1));
 			childClass2.writeFile(outputDir);
 			
+			// Defrost the child classes
 			childClass1.defrost();
 			childClass2.defrost();
 			
+			// Set the super classes for the children and output the class files
 			childClass1.setSuperclass(superClass);
 			childClass2.setSuperclass(superClass);
 			
@@ -79,6 +85,11 @@ public class DefineNewClass {
 		}
 	}
 	
+	/*
+	 * Method to make classes
+	 * @param pool, newClassName
+	 * @return the created class
+	 */
 	public static CtClass makeClass(ClassPool pool, String newClassName)
 	{
 		CtClass cc = pool.makeClass(newClassName);
@@ -86,6 +97,10 @@ public class DefineNewClass {
 	    return cc;
 	}
 	
+	/*
+	 * Fetches input from scanner
+	 * @return String[] inputs
+	 */
 	public static String[] getInputs() {
 	      String input = scan.nextLine();
 
@@ -101,7 +116,7 @@ public class DefineNewClass {
 	 * Method to determine the class that should
 	 * be the super class
 	 * @param common, args
-	 * @retrun the super class
+	 * @return the super class
 	 */
 	static String getSuperClassName( List<String> common, String[] inputs )
 	{
@@ -151,6 +166,10 @@ public class DefineNewClass {
 		return childClasses;
 	}
 	
+	/*
+	 * Inserts class paths into pool
+	 * @param pool
+	 */
 	public static void insertClassPath(ClassPool pool) throws NotFoundException 
 	{
 		String strClassPath = outputDir;
