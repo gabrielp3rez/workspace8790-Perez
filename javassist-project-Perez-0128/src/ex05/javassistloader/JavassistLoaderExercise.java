@@ -49,8 +49,11 @@ public class JavassistLoaderExercise {
 				case 1:
 					// Get methods and classes
 					String[] methods = getMethods();
+					if(methods.length == 0)
+					{
+						break;
+					}
 					String[] classes = getClasses();
-					
 					// Should be 3 classes
 					if (classes.length != 3)
 					{
@@ -119,6 +122,7 @@ public class JavassistLoaderExercise {
 				else
 				{
 					System.out.println("[WRN] This method " + methods[0] + " has been modified");
+					return new String[0];
 				}
 			}
 			else
