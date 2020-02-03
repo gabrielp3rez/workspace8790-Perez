@@ -255,7 +255,6 @@ public class JavassistLoaderExercise {
 			callMethod(cp, childClasses.get(1), usage);
 		
 		} catch (NotFoundException | CannotCompileException | SecurityException | IllegalArgumentException | ClassNotFoundException | InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
