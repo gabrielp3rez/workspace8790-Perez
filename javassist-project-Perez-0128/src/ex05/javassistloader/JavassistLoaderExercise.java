@@ -95,8 +95,6 @@ public class JavassistLoaderExercise {
 				// Check hash map to see if the method has been modified
 				if(!isModified(methods[0]))
 				{
-					// If it hasn't been modified, set modified to true
-					isModified.put(methods[0], true);
 					// Increment methods should be incX or incY
 					if(methods[1].equals("incX") || methods[1].equals("incY"))
 					{
@@ -232,7 +230,7 @@ public class JavassistLoaderExercise {
 			String usage = methods[0];
 			String incr = methods[1];
 			String getter = methods[2];
-			char var = incr.charAt(incr.length() - 1);
+			char var = getter.charAt(getter.length() - 1);
 			
 			// Get the methods from the class objects
 			CtMethod methodChildClass1 = childClassName1.getDeclaredMethod(usage);
@@ -248,6 +246,9 @@ public class JavassistLoaderExercise {
 			// Insert block into the methods
 			methodChildClass1.insertBefore(block);
 			methodChildClass2.insertBefore(block);
+			
+			// Set modified to true
+			isModified.put(methods[0], true);
 					
 			// Invoke the methods
 			callMethod(cp, childClasses.get(0), usage);
