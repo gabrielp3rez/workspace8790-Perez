@@ -49,7 +49,7 @@ public class JavassistLoaderExercise {
 				case 1:
 					// Get methods and classes
 					String[] methods = getMethods();
-					if(methods.length == 0)
+					if(methods == null)
 					{
 						break;
 					}
@@ -60,7 +60,6 @@ public class JavassistLoaderExercise {
 						System.out.println("[WRN] Invalid Input Size!");
 						break;
 					}
-					
 					for(String className: classes)
 					{
 						if(className.startsWith("Common"))
@@ -68,11 +67,8 @@ public class JavassistLoaderExercise {
 							common.add(className);
 						}
 					}
-					// Get appropriate super class name and child class names
 					String superClassName = getSuperClassName(common,classes);
 					List<String> childClasses = getChildClasses(superClassName, classes);
-					
-					// Call analysis process method
 					analysisProcess(methods, superClassName, childClasses);
 			}
 			
@@ -122,7 +118,7 @@ public class JavassistLoaderExercise {
 				else
 				{
 					System.out.println("[WRN] This method " + methods[0] + " has been modified");
-					return new String[0];
+					return null;
 				}
 			}
 			else
