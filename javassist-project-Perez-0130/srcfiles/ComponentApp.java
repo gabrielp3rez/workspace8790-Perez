@@ -5,7 +5,8 @@ public class ComponentApp {
 		ComponentApp localMyApp = new ComponentApp();
 		localMyApp.runComponent();
 		System.out.println(Class.forName(args[0]).getField(args[1]).getName());
-		System.out.println(/* Show the value TODO*/);
+		//System.out.println(/* Show the value TODO*/);
+		System.out.println();
 		System.out.println("Done.");
 	}
 	public void runComponent() {
