@@ -12,7 +12,6 @@ import util.UtilMenu;
 public class InsertMethodBody {
 	static String WORK_DIR = System.getProperty("user.dir");
 	static String INPUT_DIR = WORK_DIR + File.separator + "classfiles";
-	static String OUTPUT_DIR = WORK_DIR + File.separator + "output";
 
 	private static ClassPool cp;
 	
