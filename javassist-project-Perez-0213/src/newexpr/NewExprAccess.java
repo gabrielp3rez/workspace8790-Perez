@@ -77,6 +77,7 @@ public class NewExprAccess extends ClassLoader {
                   e.printStackTrace();
                }
                
+               // Get the fields of the class
                CtField fields[] = newExpr.getEnclosingClass().getDeclaredFields();
                
                String log = String.format("[Edited by ClassLoader] new expr: %s, " //
@@ -87,6 +88,7 @@ public class NewExprAccess extends ClassLoader {
                String block = "{ " + _L_;
                block += "  $_ = $proceed($$);" + _L_;
                block += "  {\n" + _L_; 
+               // Iterate through fields and get field values
                for(int i = 0; i < count && i < fields.length; i++)
                {
             	   try {

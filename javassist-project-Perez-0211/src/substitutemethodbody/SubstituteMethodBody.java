@@ -57,9 +57,9 @@ public class SubstituteMethodBody extends ClassLoader {
 					}
 					index = input[2];
 					val = input[3];
-					SubstituteMethodBody s = new SubstituteMethodBody();
+					SubstituteMethodBody s = new SubstituteMethodBody(); // call constructor
 					Class<?> c = s.loadClass("target." + appName);
-					Method main = c.getDeclaredMethod("main", new Class[] {String[].class});
+					Method main = c.getDeclaredMethod("main", new Class[] {String[].class}); // Invoke main
 					main.invoke(null, new Object[] {args});
 				}
 			}
@@ -94,6 +94,7 @@ public class SubstituteMethodBody extends ClassLoader {
 					if ((className.equals("target.ComponentApp") && methodName.equals("move")) || 
 							className.equals("target.ServiceApp") && methodName.equals("fill"))
 					{
+						// Reset the parameter of the target application
 						isModified.put(methodName, true);
 						String block = "{\n" 
 								+ "\tSystem.out.println(\"Reset Param " + index + " to " + val + ".\");\n"
